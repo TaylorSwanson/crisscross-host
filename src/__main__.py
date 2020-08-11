@@ -6,6 +6,8 @@ from pathlib import Path
 
 from Database import Database
 
+import GuestInterface
+
 
 # Make sure homestore is there
 homestore = os.path.expanduser("~/.crisscross/")
@@ -18,4 +20,7 @@ db.connect(os.path.join(homestore, "store.db"))
 for secret in db.getSecrets():
   print(secret)
 
+GuestInterface.run()
+
+print("Shutting down")
 db.close()

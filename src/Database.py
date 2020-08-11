@@ -78,10 +78,10 @@ use Database.getInstance instead""")
 
     if exists:
       c.execute("UPDATE secrets SET value=? WHERE name=?;", (value, name))
-      c.execute("UPDATE secrets SET added=? WHERE name=?;", (now, name))
+      c.execute("UPDATE secrets SET updated=? WHERE name=?;", (now, name))
     else:
       val = (name, value, now)
-      c.execute("INSERT INTO secrets (name, value, added) VALUES (?,?,?);", val)
+      c.execute("INSERT INTO secrets (name, value, updated) VALUES (?,?,?);", val)
 
     self.conn.commit()
 
@@ -97,10 +97,10 @@ use Database.getInstance instead""")
 
     if exists:
       c.execute("UPDATE config SET value=? WHERE setting=?;", (value, setting))
-      c.execute("UPDATE config SET added=? WHERE setting=?;", (now, setting))
+      c.execute("UPDATE config SET updated=? WHERE setting=?;", (now, setting))
     else:
       val = (setting, value, now)
-      c.execute("INSERT INTO config (setting, value, added) VALUES (?,?,?);", val)
+      c.execute("INSERT INTO config (setting, value, updated) VALUES (?,?,?);", val)
 
     self.conn.commit()
 

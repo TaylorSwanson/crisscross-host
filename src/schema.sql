@@ -3,8 +3,12 @@ CREATE TABLE IF NOT EXISTS config (
   value           TEXT NOT NULL
 );
 
+CREATE UNIQUE INDEX config_setting_uniq ON config (setting);
+
 CREATE TABLE IF NOT EXISTS secrets (
   name            TEXT NOT NULL,
   value           TEXT NOT NULL,
-  added           TIMESTAMP CURRENT_TIMESTAMP NOT NULL
+  updated           TIMESTAMP NOT NULL
 );
+
+CREATE UNIQUE INDEX secret_name_uniq ON secrets (name);
